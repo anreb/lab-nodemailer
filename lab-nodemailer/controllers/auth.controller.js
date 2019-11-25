@@ -34,12 +34,12 @@ exports.signupPost = (req, res) => {
 	)
 		.then(async () => {
 			await transporter.sendMail({
-				from: 'B-E team <B-E@gmail.com>',
+				from: 'Ironhack@gmail.com',
 				to: email,
-				subject: 'Click on the link to confirm account',
-				text: `Confirm account`,
+				subject: 'Confirm accoun',
+				text: `Click in the link to activate account`,
 				html: `
-          <a href="http://localhost:3000/auth/confirm/${token}"> Confirmation Code: ${token} </a>`
+          <a href="http://localhost:3000/auth/confirm/${token}"> Confirmation code: ${token} </a>`
 			});
 			res.redirect('/');
 		})
