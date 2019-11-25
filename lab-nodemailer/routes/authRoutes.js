@@ -4,11 +4,10 @@ const { signupView, signupPost, loginView, confirmAccount } = require('../contro
 const { catchErrors } = require('../middlewares/catchErrors');
 
 function isNotLoggedIn(req, res, next) {
-	!req.isAuthenticated() ? next() : res.redirect('/auth/login');
+	return !req.isAuthenticated() ? next() : res.redirect('/auth/login');
 }
 
 function isLogged(req, res, next) {
-	console.log(req.isAuthenticated());
 	return req.isAuthenticated() ? next() : res.redirect('/auth/login');
 }
 
@@ -16,6 +15,7 @@ passportRouter.get('/signup', signupView);
 passportRouter.post('/signup', signupPost);
 
 passportRouter.get('/login', isNotLoggedIn, loginView);
+
 passportRouter.post(
 	'/login',
 	passport.authenticate('local', {
